@@ -128,7 +128,8 @@ int main() {
     in_place_add(A, B, 5);
 
     // Demonstrate parallel vs sequential matrix multiplication
-    int N = 2000; // Adjust this value based on your system's capability
+    int N = 1500; // Adjust this value based on your system's capability
+    // With a bigger N the time difference between parallel and sequential is more noticeable
 
     // Ensure there's enough memory for matrices A, B, and C
     double *A_matrix = (double*) malloc(N * N * sizeof(double));
