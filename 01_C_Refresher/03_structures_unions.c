@@ -18,7 +18,7 @@ int main() {
     // Using a Structure
     printf("== Using a Structure ==\n");
     Car myCar; // Declare a Car structure variable
-    strcpy(myCar.make, "Toyota"); // Assign data to the structure's fields
+    strcpy(myCar.make, "Tesla"); // Assign data to the structure's fields
     myCar.model_year = 2021;
     myCar.price = 30300.99;
 
