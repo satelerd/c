@@ -1,3 +1,17 @@
+// # Explanation:
+// ## Memory Management
+// This section demonstrates how to handle dynamic memory allocations that might need resizing based on varying data sizes. It uses a static buffer to avoid reallocating memory unnecessarily.
+
+// ## In-Place Operations
+// This example shows how to perform arithmetic operations directly on the data stored in an array, modifying the array in place. This is efficient as it does not require additional memory for the result.
+
+// ## Concurrency with OpenMP
+// OpenMP is used to parallelize the matrix multiplication process, significantly speeding up the computation by dividing the work among multiple processors. The #pragma omp parallel for directive tells the compiler to distribute the loop iterations across available threads, improving performance on multi-core systems.
+
+// ## Matrix Multiplication Output
+// After computing the matrix multiplication, a small part of the resulting matrix is printed to provide a tangible sense of the operation's outcome and to illustrate how the data is organized after parallel processing.
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
@@ -49,8 +63,9 @@ void in_place_add(int* A, int* B, int size) {
 // Concurrency and Parallel Processing with OpenMP
 // Parallel matrix multiplication using OpenMP to utilize multiple CPU cores.
 void parallel_matrix_multiply(double *A, double *B, double *C, int N) {
-    printf("Starting parallel matrix multiplication...\n");
-    #pragma omp parallel for // OpenMP directive to parallelize the outer loop.
+    clock_t start_time = clock(); // Mark the start of the calculation
+
+    #pragma omp parallel for
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             double sum = 0.0;
@@ -60,15 +75,43 @@ void parallel_matrix_multiply(double *A, double *B, double *C, int N) {
             C[i * N + j] = sum;
         }
     }
-    printf("Completed parallel matrix multiplication. Result matrix:\n");
+
+    clock_t end_time = clock(); // Mark the end of the calculation
+    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC; // Calculate the total time used
+
+    printf("\nCompleted parallel matrix multiplication.\n");
+    printf("Time spent: %.2f seconds\n", time_spent);
+    printf("Result matrix (first 3x3 block):\n");
     // Print a small part of the result matrix for demonstration.
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            printf("%.2f ", C[i * N + j]);
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%.2f\t", C[i * N + j]);
             if (j == 4) printf("\n");
         }
         if (i == 4) break;
     }
+    printf("\nThis 3x3 block is a small part of the entire result matrix to illustrate the outcome of the parallel matrix multiplication.\n");
+}
+
+// Multiplicación de matrices de manera secuencial
+void sequential_matrix_multiply(double *A, double *B, double *C, int N) {
+    clock_t start_time = clock(); // Marcar el inicio del cálculo
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            double sum = 0.0;
+            for (int k = 0; k < N; k++) {
+                sum += A[i * N + k] * B[k * N + j];
+            }
+            C[i * N + j] = sum;
+        }
+    }
+
+    clock_t end_time = clock(); // Marcar el fin del cálculo
+    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC; // Calcular el tiempo total utilizado
+
+    printf("\nCompleted sequential matrix multiplication.\n");
+    printf("Time spent: %.2f seconds\n", time_spent);
 }
 
 int main() {
@@ -85,23 +128,36 @@ int main() {
     in_place_add(A, B, 5);
 
     // Demonstrate parallel matrix multiplication
-    int N = 1000;
-    double *matA = (double*) malloc(N * N * sizeof(double));
-    double *matB = (double*) malloc(N * N * sizeof(double));
-    double *matC = (double*) malloc(N * N * sizeof(double));
+    int N = 3000; // Adjust this value based on your system's capability
 
-    // Initialize matrices A and B
+    // Ensure there's enough memory for matrices A, B, and C
+    double *A_matrix = (double*) malloc(N * N * sizeof(double));
+    double *B_matrix = (double*) malloc(N * N * sizeof(double));
+    double *C_matrix = (double*) malloc(N * N * sizeof(double));
+
+    // Initialize matrices A_matrix and B_matrix here...
     for (int i = 0; i < N * N; i++) {
-        matA[i] = i * 0.001;
-        matB[i] = i * 0.002;
+        A_matrix[i] = i * 0.001;
+        B_matrix[i] = i * 0.002;
     }
 
-    printf("--- Started parallel matrix multiplication--- \n");
-    parallel_matrix_multiply(matA, matB, matC, N);
+    printf("--- Starting parallel matrix multiplication ---\n");
+    parallel_matrix_multiply(A_matrix, B_matrix, C_matrix, N);
+    printf("\n");
 
-    free(matA);
-    free(matB);
-    free(matC);
+    // Reset or clear the result matrix C_matrix before the next operation
+    for (int i = 0; i < N * N; i++) {
+        C_matrix[i] = 0.0;
+    }
+
+    printf("--- Starting sequential matrix multiplication ---\n");
+    sequential_matrix_multiply(A_matrix, B_matrix, C_matrix, N);
+    printf("\n");
+    
+    // Free the allocated memory
+    free(A_matrix);
+    free(B_matrix);
+    free(C_matrix);
 
     printf("Demonstration completed.\n");
 
