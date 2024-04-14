@@ -1,9 +1,6 @@
-# c
-trying to learn c:
-if i can train a gpt2 llm in c, i can claim to `kinda` understand c.
----
+# If I can train gpt2 in c, I can claim to `kinda` understand c.
 
-This repository contains all the resources and code developed through a tailored curriculum designed in collaboration with ChatGPT.
+#### This repository contains all the resources and code developed through a tailored curriculum designed in conversation with Chat[GPT](https://chat.openai.com/g/g-axPOXP3eC-gpt-2-c-guide).
 
 ## Curriculum
 The curriculum is structured to cover both fundamental and advanced concepts necessary for mastering C, particularly in the context of implementing and training neural networks. Each chapter of the curriculum corresponds to a specific topic, with corresponding code examples and exercises stored in dedicated folders within this repository.
@@ -16,6 +13,7 @@ The curriculum is structured to cover both fundamental and advanced concepts nec
      - Structures and Unions
      - File Handling
      - Matrix Operations in C
+     - Kinda Advance C Usage
    - **Folder**: `01_C_Refresher`
 
 2. **Introduction to CUDA**
@@ -43,3 +41,8 @@ The curriculum is structured to cover both fundamental and advanced concepts nec
      - Layer Normalization
      - Multi-head Attention
    - **Folder**: `04_Transformer_Architecture`
+  
+## Current Building Status
+- ~Learning 01_C_Refresher~
+- ~Building 01_C_Refresher~
+- Learnign 02_Intro_to_CUDA
