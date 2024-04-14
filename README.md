@@ -1,6 +1,6 @@
 # c
 trying to learn c:
-if i can train a gpt2 llm in c, i can claim to understand c.
+if i can train a gpt2 llm in c, i can claim to `kinda` understand c.
 ---
 
 This repository contains all the resources and code developed through a tailored curriculum designed in collaboration with ChatGPT.
@@ -15,7 +15,7 @@ The curriculum is structured to cover both fundamental and advanced concepts nec
      - Pointers and Memory Management
      - Structures and Unions
      - File Handling
-     - Debugging in C
+     - Matrix Operations in C
    - **Folder**: `01_C_Refresher`
 
 2. **Introduction to CUDA**
