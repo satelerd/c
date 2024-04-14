@@ -63,7 +63,7 @@ void in_place_add(int* A, int* B, int size) {
 // Concurrency and Parallel Processing with OpenMP
 // Parallel matrix multiplication using OpenMP to utilize multiple CPU cores.
 void parallel_matrix_multiply(double *A, double *B, double *C, int N) {
-    clock_t start_time = clock(); // Mark the start of the calculation
+    clock_t start_time = clock();
 
     #pragma omp parallel for
     for (int i = 0; i < N; i++) {
@@ -76,26 +76,26 @@ void parallel_matrix_multiply(double *A, double *B, double *C, int N) {
         }
     }
 
-    clock_t end_time = clock(); // Mark the end of the calculation
-    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC; // Calculate the total time used
+    clock_t end_time = clock();
+    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
-    printf("\nCompleted parallel matrix multiplication.\n");
+    printf("Completed parallel matrix multiplication.\n");
     printf("Time spent: %.2f seconds\n", time_spent);
-    printf("Result matrix (first 3x3 block):\n");
+    printf("Result matrix (first 2x2 block):\n");
     // Print a small part of the result matrix for demonstration.
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
             printf("%.2f\t", C[i * N + j]);
             if (j == 4) printf("\n");
         }
         if (i == 4) break;
     }
-    printf("\nThis 3x3 block is a small part of the entire result matrix to illustrate the outcome of the parallel matrix multiplication.\n");
+    printf("\nThis 2x2 block is a small part of the entire result matrix to illustrate the outcome of the parallel matrix multiplication.\n");
 }
 
 // Multiplicación de matrices de manera secuencial
 void sequential_matrix_multiply(double *A, double *B, double *C, int N) {
-    clock_t start_time = clock(); // Marcar el inicio del cálculo
+    clock_t start_time = clock();
 
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -107,10 +107,10 @@ void sequential_matrix_multiply(double *A, double *B, double *C, int N) {
         }
     }
 
-    clock_t end_time = clock(); // Marcar el fin del cálculo
-    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC; // Calcular el tiempo total utilizado
+    clock_t end_time = clock();
+    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
-    printf("\nCompleted sequential matrix multiplication.\n");
+    printf("Completed sequential matrix multiplication.\n");
     printf("Time spent: %.2f seconds\n", time_spent);
 }
 
@@ -127,8 +127,8 @@ int main() {
     int B[5] = {5, 4, 3, 2, 1};
     in_place_add(A, B, 5);
 
-    // Demonstrate parallel matrix multiplication
-    int N = 3000; // Adjust this value based on your system's capability
+    // Demonstrate parallel vs sequential matrix multiplication
+    int N = 2000; // Adjust this value based on your system's capability
 
     // Ensure there's enough memory for matrices A, B, and C
     double *A_matrix = (double*) malloc(N * N * sizeof(double));
