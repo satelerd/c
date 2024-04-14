@@ -23,6 +23,14 @@ int main() {
         printf("\n");
     }
     free(arr); // Freeing the allocated memory
+    // After freeing, accessing arr is undefined behavior. It might show garbage values, original values, or cause a crash.
+    printf("Array elements after freeing: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    // It's a good practice to set arr to NULL after freeing to avoid dangling pointer access.
+    arr = NULL;
 
     // Pointer arithmetic
     int *arr2 = (int *)malloc(5 * sizeof(int));
