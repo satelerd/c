@@ -1,3 +1,17 @@
+// # Key Points to Understand:
+// ## Structures:
+// Structs are defined using the typedef struct keyword, and they group different types of data.
+// You can access the members of a structure using the dot operator (e.g., myCar.price).
+
+// ## Unions:
+// Unions are defined using the typedef union keyword. They store different data types in the same memory location but only one at a time.
+// Changing the value of one member of a union affects the values of all other members because they share the same memory.
+
+// ## Practical Applications:
+// Structures are useful for defining objects with multiple distinct attributes.
+// Unions are used in situations where variables may hold different types of data at different times but never simultaneously, which is common in low-level programming interfacing directly with hardware or in protocol data handling.
+
+
 #include <stdio.h>
 
 // Define a structure for a car
