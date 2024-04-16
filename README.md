@@ -18,11 +18,12 @@ The curriculum is structured to cover both fundamental and advanced concepts nec
 
 2. **Introduction to CUDA**
    - **Topics Covered**:
-     - CUDA Basics
-     - Kernel Functions
+     - Introduction to CUDA and GPU Computing
+     - Basics of CUDA Programming
      - Memory Management in CUDA
-     - Error Handling
-     - Optimizing CUDA Code
+     - Kernel Diving and Performance Optimization
+     - Error Handling in CUDA
+     - Advanced CUDA Features
    - **Folder**: `02_Intro_to_CUDA`
 
 3. **Basics of Neural Networks**
