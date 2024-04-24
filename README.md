@@ -19,6 +19,7 @@ The curriculum is structured to cover both fundamental and advanced concepts nec
 2. **Introduction to CUDA**
    - **Topics Covered**:
      - Introduction to CUDA and GPU Computing
+     - GPU-Rich Enviroment Setup
      - Basics of CUDA Programming
      - Memory Management in CUDA
      - Kernel Diving and Performance Optimization
