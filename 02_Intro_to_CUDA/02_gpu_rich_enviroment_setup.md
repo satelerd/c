@@ -55,6 +55,12 @@ sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install build-essential -y
 sudo apt install nvidia-cuda-toolkit -y
 ```
+### If that doesn't work
+Try to install the NVIDIA drivers this way.
+```bash
+sudo ubuntu-drivers install --gpgpu
+```
+
 
 # Verifying the Installation
 Verify the installation by checking the CUDA version and GPU driver.
